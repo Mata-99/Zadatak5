@@ -38,4 +38,20 @@ public class Polaznik {
         return "Ime:" + ime + "Prezime: " + prezime + " email: " + email;
     }
 
+    @Override
+    public boolean equals(Object p){
+      if(this == p ){
+          return true;
+      }
+        if (p == null || getClass() != p.getClass()) {
+            return false;
+        }
+        Polaznik polaznik = (Polaznik) p;
+        return  email.equalsIgnoreCase(polaznik.email);
+
+    }
+    @Override
+    public int hashCode(){
+        return email.toLowerCase().hashCode();
+    }
 }

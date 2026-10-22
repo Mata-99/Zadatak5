@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class EvidencijaPolaznika  {
 
 public static void main (String [] args){
 
-    ArrayList<Polaznik> polaznici = new ArrayList<>();
+   // ArrayList<Polaznik> polaznici = new ArrayList<>();
+    HashSet<Polaznik> polaznicii = new HashSet<>();
     Scanner unos = new Scanner(System.in);
 
     int izbor;
@@ -32,18 +35,19 @@ public static void main (String [] args){
                 System.out.println("Unesite email: ");
                 String email = unos.nextLine();
 
-                polaznici.add(new Polaznik(ime, prezime, email));
-                System.out.println("Polaznik uspjesno dodan");
-                break;
-
+             if(polaznicii.add(new Polaznik(ime, prezime, email))){
+                 System.out.println("Polaznik uspjesno dodan");
+             }else{
+                 System.out.println("Email vec postoji");
+             }
 
             case 2:
 
-                if (polaznici.isEmpty()){
+                if (polaznicii.isEmpty()){
                     System.out.println("Nema unesenih polaznika");
                 } else{
                     System.out.println(" Popis polaznika: ");
-                    for(Polaznik p  : polaznici){
+                    for(Polaznik p  : polaznicii){
                         System.out.println(p);
                     }
                 }
@@ -55,7 +59,7 @@ public static void main (String [] args){
 
                 boolean pronadjen = false;
 
-                for (Polaznik p : polaznici){
+                for (Polaznik p : polaznicii){
                     if(p.getEmail().equalsIgnoreCase(trazeniEmail))
                     {
                         System.out.println("Pronadjen polaznik: ");
@@ -80,6 +84,7 @@ public static void main (String [] args){
         }
     }while( izbor != 0);
 
+    
     unos.close();
 
 
